@@ -132,6 +132,22 @@ function component(width, height, color, x, y, type) {
 		}
 		return crash;
 	}
+	this.leftcanvas = function(otherobj) {
+		var myleft = this.x;
+		var myright = this.x + (this.width);
+		var mytop = this.y;
+		var mybottom = this.y + (this.height);
+		var otherleft = otherobj.x;
+		var otherright = otherobj.x + (otherobj.width);
+		var othertop = otherobj.y;
+		var otherbottom = otherobj.y + (otherobj.height);
+		var crash = true;
+		if ((mybottom < othertop) || (mytop > otherbottom)
+				|| (myright < otherleft) || (myleft > otherright)) {
+			crash = false;
+		}
+		return crash;
+	}
 }
 
 function updateGameArea() {
@@ -167,6 +183,16 @@ function updateGameArea() {
 		}
 		myscore.text = "SCORE: " + myscore.score;
 		myscore.update();
+		if(myGamePiece.y > myGameArea.canvas.height) {
+			myGamePiece.y = 0;
+		} else if (myGamePiece.y < 0) {
+			myGamePiece.y = myGameArea.canvas.height;
+		}
+		if(myGamePiece.x > myGameArea.canvas.width) {
+			myGamePiece.x = 0;
+		} else if (myGamePiece.x < 0) {
+			myGamePiece.x = myGameArea.canvas.width;
+		}		
 		myGamePiece.x += myGamePiece.speedX;
 		myGamePiece.y += myGamePiece.speedY;
 		myGamePiece.update();
