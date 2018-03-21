@@ -101,9 +101,9 @@ function component(width, height, color, x, y, type) {
 			ctx.fillStyle = color;
 			ctx.fillText(this.text, this.x, this.y);
 		} else {
-			//ctx.fillStyle = color;
-			//ctx.fillRect(this.x, this.y, this.width, this.height);
-			document.getElementById("scream");
+			ctx.fillStyle = color;
+			ctx.fillRect(this.x, this.y, this.width, this.height);
+			//document.getElementById("scream");
 		}
 	}
 	this.crashWith = function(otherobj) {
