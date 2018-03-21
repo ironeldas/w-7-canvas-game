@@ -3,9 +3,10 @@ var myGamePiece;
 var myObstacles = [];
 var myscore;
 
-
-var img = new Image();   // Create new img element
-img.src = 'https://www.html5canvastutorials.com/demos/assets/darth-vader.jpg'; // Set source path
+var img = new Image(); // Create new img element
+img.src = 'https://www.html5canvastutorials.com/demos/assets/darth-vader.jpg'; // Set
+																				// source
+																				// path
 
 $(document).keydown(function(e) {
 	switch (e.key) {
@@ -29,7 +30,7 @@ $(document).keydown(function(e) {
 	case ' ': // space-character
 		restartGame();
 		break;
-		
+
 	default:
 		return;
 	}
@@ -55,7 +56,7 @@ function restartGame() {
 
 function startGame() {
 	myGameArea = new gamearea();
-	myGamePiece = new component(30, 30, "#e74c3c", 10, 75);
+	myGamePiece = new component(30, 30, "#e74c3c", 10, 75, "box");
 	myscore = new component("14px", "Consolas", "#2c3e50", 220, 25, "text");
 	myGameArea.start();
 }
@@ -100,10 +101,16 @@ function component(width, height, color, x, y, type) {
 			ctx.font = this.width + " " + this.height;
 			ctx.fillStyle = color;
 			ctx.fillText(this.text, this.x, this.y);
+		} else if (this.type == "box") {
+			// ctx.fillStyle = color;
+			// ctx.fillRect(this.x, this.y, this.width, this.height);
+			ctx.drawImage(img, this.x, this.y, this.width, this.height)
+			//if (this.x == this.xold) {
+				
+			//}
 		} else {
 			ctx.fillStyle = color;
 			ctx.fillRect(this.x, this.y, this.width, this.height);
-			//document.getElementById("scream");
 		}
 	}
 	this.crashWith = function(otherobj) {
