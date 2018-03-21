@@ -3,10 +3,11 @@ var myGamePiece;
 var myObstacles = [];
 var myscore;
 
-var img = new Image(); // Create new img element
-img.src = 'https://www.html5canvastutorials.com/demos/assets/darth-vader.jpg'; // Set
-																				// source
-																				// path
+var img = new Image();
+img.src = 'https://www.html5canvastutorials.com/demos/assets/darth-vader.jpg';
+
+var img0 = new Image();
+img0.src = 'http://a57.foxnews.com/media2.foxnews.com/BrightCove/694940094001/2017/02/27/0/0/694940094001_5339799205001_5339792147001-vs.jpg';
 
 $(document).keydown(function(e) {
 	switch (e.key) {
@@ -104,10 +105,12 @@ function component(width, height, color, x, y, type) {
 		} else if (this.type == "box") {
 			// ctx.fillStyle = color;
 			// ctx.fillRect(this.x, this.y, this.width, this.height);
-			ctx.drawImage(img, this.x, this.y, this.width, this.height)
-			//if (this.x == this.xold) {
-				
-			//}
+			if (this.x == this.xold) {
+				ctx.drawImage(img, this.x, this.y, this.width, this.height);
+			} else {
+				ctx.drawImage(img0, this.x, this.y, this.width, this.height);
+			}
+			this.xold = this.x;
 		} else {
 			ctx.fillStyle = color;
 			ctx.fillRect(this.x, this.y, this.width, this.height);
